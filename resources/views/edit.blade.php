@@ -42,7 +42,7 @@
                 @endif
 
 
-                @include('vendor.mega_menu.partials.mega_menu')
+                @include('ampedweb.laravel-backpack-mega-menu::partials.mega_menu')
 
 
                 @include('crud::inc.form_save_buttons')

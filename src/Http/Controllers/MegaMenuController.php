@@ -1,8 +1,6 @@
 <?php
 
-
-namespace AmpedWeb\LaravelBackpackMegaMenu\Http\Controllers\Admin;
-
+namespace AmpedWeb\LaravelBackpackMegaMenu\Http\Controllers;
 
 use AmpedWeb\LaravelBackpackMegaMenu\Models\MegaMenu;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -10,7 +8,6 @@ use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 class MegaMenuController extends CrudController
 {
@@ -25,11 +22,12 @@ class MegaMenuController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(MegaMenu::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/mega-menu');
-        CRUD::setEntityNameStrings('menu', 'menus');
-        $this->crud->setCreateView('ampedweb.laravel-backpack-mega-menu.create');
-        $this->crud->setEditView('ampedweb.laravel-backpack-mega-menu.edit');
+
+        $this->crud->setModel(MegaMenu::class);
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/mega-menu');
+        $this->crud->setEntityNameStrings('menu', 'menus');
+        $this->crud->setCreateView('ampedweb.laravel-backpack-mega-menu::create');
+        $this->crud->setEditView('ampedweb.laravel-backpack-mega-menu::edit');
 
     }
 

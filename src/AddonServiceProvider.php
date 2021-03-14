@@ -1,6 +1,6 @@
 <?php
 
-namespace Ampedweb\LaravelBackpackMegaMenu;
+namespace AmpedWeb\LaravelBackpackMegaMenu;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -23,14 +23,14 @@ class AddonServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if ($this->packageDirectoryExistsAndIsNotEmpty('bootstrap') &&
-            file_exists($helpers = $this->path.'/bootstrap/helpers.php')) { 
+            file_exists($helpers = $this->path.'/bootstrap/helpers.php')) {
             require $helpers;
         }
-        
+
         if ($this->packageDirectoryExistsAndIsNotEmpty('resources/lang')) {
             $this->loadTranslationsFrom($this->path.'/resources/lang', 'ampedweb.laravel-backpack-mega-menu');
         }
-        
+
         if ($this->packageDirectoryExistsAndIsNotEmpty('resources/views')) {
             // Load published views
             $this->loadViewsFrom(base_path('resources/views/vendor/ampedweb/laravel-backpack-mega-menu'), 'ampedweb.laravel-backpack-mega-menu');
@@ -42,9 +42,9 @@ class AddonServiceProvider extends ServiceProvider
         if ($this->packageDirectoryExistsAndIsNotEmpty('database/migrations')) {
             $this->loadMigrationsFrom($this->path.'/database/migrations');
         }
-        
+
         if ($this->packageDirectoryExistsAndIsNotEmpty('routes')) {
-            $this->loadRoutesFrom($this->path.'/routes/laravel-backpack-mega-menu.php');   
+            $this->loadRoutesFrom($this->path.'/routes/laravel-backpack-mega-menu.php');
         }
 
         // Publishing is only necessary when using the CLI.

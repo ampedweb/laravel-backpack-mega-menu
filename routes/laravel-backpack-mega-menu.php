@@ -14,7 +14,8 @@
  * Admin Routes
  */
 
-use Ampedweb\LaravelBackpackMegaMenu\Http\Controllers\Admin\MegaMenuController;
+
+use AmpedWeb\LaravelBackpackMegaMenu\Http\Controllers\MegaMenuController;
 
 Route::group([
      'prefix' => config('backpack.base.route_prefix', 'admin'),

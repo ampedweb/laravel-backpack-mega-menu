@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Ampedweb\LaravelBackpackMegaMenu Translation Lines
+    | AmpedWeb\LaravelBackpackMegaMenu Translation Lines
     |--------------------------------------------------------------------------
     */
 
