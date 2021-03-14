@@ -29,6 +29,11 @@ Via Composer
 ``` bash
 composer require ampedweb/laravel-backpack-mega-menu
 ```
+```
+php artisan backpack:add-sidebar-content "<li class="nav-item"><a class="nav-link" href="{{ backpack_url('mega-menu') }}"><i class="la la-bars nav-icon"></i> Mega Menus</a></li>"
+```
+
+
 
 ## Usage
 
