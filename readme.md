@@ -29,11 +29,15 @@ Via Composer
 ``` bash
 composer require ampedweb/laravel-backpack-mega-menu
 ```
+
+Publish the JS assets
+```
+php artisan vendor:publish --provider="AmpedWeb\LaravelBackpackMegaMenu\AddonServiceProvider"
+```
+Add a sidebar menu item to the CrudController
 ```
 php artisan backpack:add-sidebar-content "<li class="nav-item"><a class="nav-link" href="{{ backpack_url('mega-menu') }}"><i class="la la-bars nav-icon"></i> Mega Menus</a></li>"
 ```
-
-
 
 ## Usage
 
