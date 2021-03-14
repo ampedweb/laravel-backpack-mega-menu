@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Ampedweb\\LaravelBackpackMegaMenu\\": "src/"
+            "AmpedWeb\\LaravelBackpackMegaMenu\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ampedweb\\LaravelBackpackMegaMenu\\Tests\\": "tests"
+            "AmpedWeb\\LaravelBackpackMegaMenu\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -37,7 +37,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Ampedweb\\LaravelBackpackMegaMenu\\AddonServiceProvider"
+                "AmpedWeb\\LaravelBackpackMegaMenu\\AddonServiceProvider"
             ]
         }
     }
