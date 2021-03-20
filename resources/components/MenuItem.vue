@@ -1,19 +1,20 @@
 <template>
     <div class="card">
         <div class="card-body p-2">
-            <input type="text" class="form-control form-control-sm"
+            <input type="text" class="form-control form-control-sm" data-test="title-input"
                    :class="{'is-invalid':isTitleInvalid && showValidation}" placeholder="Title"
                    :value="title" @input="$emit('update:title', $event.target.value); revealValidation()">
-            <span class="invalid-feedback">Please enter a valid title</span>
+            <span class="invalid-feedback" data-test="title-invalid-feedback">Please enter a valid title</span>
 
             <div class="form-group mb-0">
                 <input type="text" class="form-control form-control-sm slug-input"
+                       data-test="slug-input"
                        :class="{'is-invalid':isSlugInvalid && showValidation}" placeholder="Slug"
                        :value="slug" @input="$emit('update:slug', $event.target.value); revealValidation()">
-                <span class="invalid-feedback">Please enter a valid slug</span>
+                <span class="invalid-feedback" data-test="slug-invalid-feedback">Please enter a valid slug</span>
             </div>
             <div class="d-flex align-items-center">
-                <button class="btn btn-primary btn-sm mt-2" type="button" v-if="hideViewChildrenBtn === false"
+                <button class="btn btn-primary btn-sm mt-2" type="button" data-test="view-children-btn" v-if="hideViewChildrenBtn === false"
                         @click="setTopLevelMenuItemListId(itemListId)">
                     View Children
                 </button>
@@ -22,7 +23,7 @@
                     <i class="las la-arrows-alt-v" v-show="sortHandle === 'vertical'"></i>
                     <i class="las la-arrows-alt" v-show="sortHandle === 'alldirections'"></i>
                 </button>
-                <button class="btn btn-transparent p-0 btn-sm mt-2 text-danger delete-btn"
+                <button class="btn btn-transparent p-0 btn-sm mt-2 text-danger delete-btn" data-test="delete-item-btn"
                         @click="$emit('delete-item');" type="button"><i class="las la-trash-alt"></i></button>
             </div>
         </div>
@@ -35,11 +36,23 @@ export default {
     name: "MenuItem",
     props: {
         index: Number,
-        title: String,
-        slug: String,
-        itemListId:Number,
-        hideViewChildrenBtn: Boolean,
-        sortHandle:String
+        title: {
+            type: String,
+            required: true
+        },
+        slug: {
+            type: String,
+            required: true
+        },
+        itemListId: {
+            type:Number,
+            required: true
+        },
+        hideViewChildrenBtn: {
+            type: Boolean,
+            default: false
+        },
+        sortHandle: String
     },
     data() {
         return {
