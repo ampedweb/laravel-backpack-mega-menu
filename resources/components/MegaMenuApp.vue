@@ -168,8 +168,6 @@ export default {
         },
         deleteMenuColumn(index, columnItems) {
 
-            console.log(columnItems);
-
             if (columnItems !== undefined && columnItems.length > 1) {
                 if (confirm("Are you sure you want to delete this column? All menu items inside will be deleted.")) {
                     this.selectedTopLevelMenuColumnsArray.splice(index, 1);
