@@ -62,10 +62,12 @@
 <script>
 import MenuItemList from "./MenuItemList";
 import MenuColumn from "./MenuColumn";
+import MenuItemMixin from "./mixins/MenuItemMixin";
 
 export default {
     name: "MegaMenuApp",
     components: {MenuColumn, MenuItemList},
+    mixins: [MenuItemMixin],
     props: {
         initialMenuArray: Array
     },
@@ -87,7 +89,7 @@ export default {
 
         selectedTopLevelMenuColumnsArray() {
 
-            const topLevelColumnMenuIndex = this.getTopLevelMenuItemColumnsByListItemId(this.selectedTopLevelMenuItemListId);
+            const topLevelColumnMenuIndex = this.getTopLevelMenuItemColumnsById(this.selectedTopLevelMenuItemListId);
             return this.menu[topLevelColumnMenuIndex].columns;
         },
 
@@ -96,9 +98,9 @@ export default {
         }
     },
     methods: {
-        topLevelMenuItemHasColumns(itemListId) {
+        topLevelMenuItemHasColumns(id) {
 
-            const index = this.getTopLevelMenuItemColumnsByListItemId(itemListId);
+            const index = this.getTopLevelMenuItemColumnsById(id);
 
             if (index < 0 || this.menu[index] === undefined) {
                 return false;
@@ -108,9 +110,9 @@ export default {
                 && this.menu[index].columns !== null
                 && this.menu[index].columns.length > 0;
         },
-        getTopLevelMenuItemColumnsByListItemId(itemListId) {
+        getTopLevelMenuItemColumnsById(id) {
 
-            const menuItemFilter = menuItem => menuItem.itemListId === itemListId;
+            const menuItemFilter = menuItem => menuItem.id === id;
 
             return this.menu.findIndex(menuItemFilter);
 
@@ -118,17 +120,7 @@ export default {
         //Add new blank top level menu item.
         addToplevelMenuItem() {
 
-            const itemListId = this.createUniqueId();
-
-            const item = {
-                title: '',
-                slug: '',
-                isVisible:true,
-                itemListId: itemListId,
-                columns: []
-            }
-
-            this.menu.push(item);
+            this.menu.push(this.createBlankMenuItem(true));
 
         },
         createUniqueId() {
@@ -137,16 +129,16 @@ export default {
 
             let maxId = 0;
             items.forEach((item, index) => {
-                if (item.itemListId !== undefined && parseInt(item.itemListId) > maxId) {
-                    maxId = parseInt(item.itemListId)
+                if (item.id !== undefined && parseInt(item.id) > maxId) {
+                    maxId = parseInt(item.id)
                 }
             });
 
             return (maxId + 1);
         },
-        addMenuItemColumn(itemListId) {
+        addMenuItemColumn(id) {
 
-            const index = this.getTopLevelMenuItemColumnsByListItemId(itemListId)
+            const index = this.getTopLevelMenuItemColumnsById(id)
 
             const item = {
                 title: '',
@@ -173,8 +165,7 @@ export default {
                 if (confirm("Are you sure you want to delete this column? All menu items inside will be deleted.")) {
                     this.selectedTopLevelMenuColumnsArray.splice(index, 1);
                 }
-            }
-            else {
+            } else {
                 this.selectedTopLevelMenuColumnsArray.splice(index, 1);
             }
         }

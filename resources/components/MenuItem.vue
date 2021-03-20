@@ -27,7 +27,7 @@
             <div class="d-flex align-items-center">
                 <button class="btn btn-primary btn-sm mt-2" type="button" data-test="view-children-btn"
                         v-if="hideViewChildrenBtn === false"
-                        @click="setTopLevelMenuItemListId(itemListId)">
+                        @click="setTopLevelMenuItemListId(id)">
                     View Children
                 </button>
                 <button class="btn btn-transparent btn-sm sort-handle text-primary p-0 mt-2 ml-auto mr-2" type="button">
@@ -44,9 +44,11 @@
 
 <script>
 import { v4 as uuidv4 } from 'uuid';
+import MenuItemMixin from "./mixins/MenuItemMixin";
 
 export default {
     name: "MenuItem",
+    mixins: [MenuItemMixin],
     props: {
         index: {
             type: Number,
@@ -64,7 +66,7 @@ export default {
             type: String,
             required: true
         },
-        itemListId: {
+        id: {
             type: Number,
             required: true
         },
@@ -79,7 +81,12 @@ export default {
     created() {
         this.uuid = uuidv4();
     },
-
+    mounted() {
+      this.incrementMenuItemCount()
+    },
+    unmounted() {
+      this.decrementMenuItemCount()
+    },
     data() {
         return {
             showValidation: false,
@@ -92,11 +99,18 @@ export default {
         },
         isSlugInvalid() {
             return this.slug.length === 0;
-        }
+        },
+
     },
     methods: {
-        setTopLevelMenuItemListId(itemListId) {
-            this.$store.commit('setTopLevelMenuItemListId', itemListId)
+        setTopLevelMenuItemListId(id) {
+            this.$store.commit('setTopLevelMenuItemListId', id)
+        },
+        incrementMenuItemCount() {
+            this.$store.commit('incrementMenuItemCount');
+        },
+        decrementMenuItemCount() {
+            this.$store.commit('decrementMenuItemCount');
         },
         revealValidation() {
             this.showValidation = true;
