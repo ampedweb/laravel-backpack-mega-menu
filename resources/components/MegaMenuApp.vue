@@ -13,25 +13,26 @@
         </div>
 
 
-
-
         <div v-if="menu.length !== undefined && menu.length > 0">
             <div class="form-row">
                 <div class="col-12">
                     <h4 class="mb-3">Top Level Menu Items</h4>
                 </div>
             </div>
-            <menu-item-list group="topLevelMenuItems" menu-list-class="form-row" menu-item-wrapper-class="col" v-model:items="menu"
+            <menu-item-list group="topLevelMenuItems" menu-list-class="form-row" menu-item-wrapper-class="col"
+                            v-model:items="menu"
                             sort-handle="horizontal"></menu-item-list>
 
         </div>
 
-        <div v-show="menu.length === undefined || menu.length === 0" class="alert alert-primary text-center" role="alert">
+        <div v-show="menu.length === undefined || menu.length === 0" class="alert alert-primary text-center"
+             role="alert">
             Create your first top level menu item using the "Add Top Level Menu Item" button.
         </div>
 
 
-        <div v-if="selectedTopLevelMenuItemListId !== null && selectedTopLevelMenuItemListId >= 0 && menu.length !== undefined && menu.length > 0">
+        <div
+            v-if="selectedTopLevelMenuItemListId !== null && selectedTopLevelMenuItemListId >= 0 && menu.length !== undefined && menu.length > 0">
             <div class="form-row">
                 <div class="col-md-8">
                     <h3>Top Level Menu Item Column</h3>
@@ -49,7 +50,7 @@
                     <div class="card bg-light">
                         <div class="card-body px-0">
                             <menu-column v-model:items="column.items" v-model:title="column.title"
-                                         v-on:delete-column="deleteMenuColumn(index)"></menu-column>
+                                         v-on:delete-column="deleteMenuColumn(index,column.items)"></menu-column>
                         </div>
                     </div>
                 </div>
@@ -99,7 +100,7 @@ export default {
 
             const index = this.getTopLevelMenuItemColumnsByListItemId(itemListId);
 
-            if(index < 0 || this.menu[index] === undefined) {
+            if (index < 0 || this.menu[index] === undefined) {
                 return false;
             }
 
@@ -134,8 +135,8 @@ export default {
             const items = this.menu;
 
             let maxId = 0;
-            items.forEach((item,index) => {
-                if(item.itemListId !== undefined && parseInt(item.itemListId) > maxId) {
+            items.forEach((item, index) => {
+                if (item.itemListId !== undefined && parseInt(item.itemListId) > maxId) {
                     maxId = parseInt(item.itemListId)
                 }
             });
@@ -152,7 +153,7 @@ export default {
             }
 
             //Make sure the index definitely exists
-            if(this.menu[index] === undefined) {
+            if (this.menu[index] === undefined) {
                 return false;
             }
 
@@ -165,8 +166,16 @@ export default {
             this.menu[index].columns.push(item);
 
         },
-        deleteMenuColumn(index) {
-            if (confirm("Are you sure you want to delete this column? All menu items inside will be deleted.")) {
+        deleteMenuColumn(index, columnItems) {
+
+            console.log(columnItems);
+
+            if (columnItems !== undefined && columnItems.length > 1) {
+                if (confirm("Are you sure you want to delete this column? All menu items inside will be deleted.")) {
+                    this.selectedTopLevelMenuColumnsArray.splice(index, 1);
+                }
+            }
+            else {
                 this.selectedTopLevelMenuColumnsArray.splice(index, 1);
             }
         }
