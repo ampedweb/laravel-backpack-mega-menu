@@ -64,6 +64,7 @@ export default {
             const item = {
                 title: '',
                 slug: '',
+                isVisible:true,
                 itemListId:itemListId
             }
 

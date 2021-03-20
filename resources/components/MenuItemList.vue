@@ -21,6 +21,7 @@
                     v-model:title.lazy.trim="element.title"
                     v-model:slug.lazy.trim="element.slug"
                     v-model:item-list-id="element.itemListId"
+                    v-model:is-visible="element.isVisible"
                     :index="index"
                     :hide-view-children-btn="hideViewChildrenBtn"
                     :sort-handle="sortHandle"

@@ -1,6 +1,17 @@
 <template>
     <div class="card">
         <div class="card-body p-2">
+            <div class="text-right">
+                <div class="custom-control custom-switch mb-2">
+                    <input type="checkbox" class="custom-control-input"
+                           :id="'menu-item-' + index" :checked="isVisible"
+                           @change="$emit('update:isVisible', $event.target.checked);"
+                    >
+                    <label class="custom-control-label" :for="'menu-item-' + index"><small
+                        class="sr-only">Visible?</small></label>
+                </div>
+            </div>
+
             <input type="text" class="form-control form-control-sm" data-test="title-input"
                    :class="{'is-invalid':isTitleInvalid && showValidation}" placeholder="Title"
                    :value="title" @input="$emit('update:title', $event.target.value); revealValidation()">
@@ -14,7 +25,8 @@
                 <span class="invalid-feedback" data-test="slug-invalid-feedback">Please enter a valid slug</span>
             </div>
             <div class="d-flex align-items-center">
-                <button class="btn btn-primary btn-sm mt-2" type="button" data-test="view-children-btn" v-if="hideViewChildrenBtn === false"
+                <button class="btn btn-primary btn-sm mt-2" type="button" data-test="view-children-btn"
+                        v-if="hideViewChildrenBtn === false"
                         @click="setTopLevelMenuItemListId(itemListId)">
                     View Children
                 </button>
@@ -35,7 +47,14 @@
 export default {
     name: "MenuItem",
     props: {
-        index: Number,
+        index: {
+            type: Number,
+            required: true
+        },
+        isVisible: {
+            type: Boolean,
+            default: true
+        },
         title: {
             type: String,
             required: true
@@ -45,7 +64,7 @@ export default {
             required: true
         },
         itemListId: {
-            type:Number,
+            type: Number,
             required: true
         },
         hideViewChildrenBtn: {
@@ -54,14 +73,14 @@ export default {
         },
         sortHandle: String
     },
-    emits: ['update:slug','update:title','delete-item'],
+    emits: ['update:slug', 'update:title', 'update:isVisible', 'delete-item'],
+
     data() {
         return {
             showValidation: false,
         }
     },
     computed: {
-
         isTitleInvalid() {
             return this.title.length === 0;
         },
