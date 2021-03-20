@@ -36,7 +36,7 @@
                     <i class="las la-arrows-alt" v-show="sortHandle === 'alldirections'"></i>
                 </button>
                 <button class="btn btn-transparent p-0 btn-sm mt-2 text-danger delete-btn" data-test="delete-item-btn"
-                        @click="$emit('delete-item');" type="button"><i class="las la-trash-alt"></i></button>
+                        @click="$emit('deleteItem',index);" type="button"><i class="las la-trash-alt"></i></button>
             </div>
         </div>
     </div>
@@ -74,7 +74,7 @@ export default {
         },
         sortHandle: String
     },
-    emits: ['update:slug', 'update:title', 'update:isVisible', 'delete-item'],
+    emits: ['update:slug', 'update:title', 'update:isVisible', 'deleteItem'],
 
     created() {
         this.uuid = uuidv4();

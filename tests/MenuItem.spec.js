@@ -5,9 +5,11 @@ describe('MenuItem Tests', () => {
 
     const wrapper = mount(MenuItem, {
             propsData: {
+                index:1,
+                isVisible:true,
                 title: 'Menu Item Title',
                 slug: 'menu-item-slug',
-                itemListId:1
+                itemListId:4
             }
         }
     );
@@ -31,4 +33,16 @@ describe('MenuItem Tests', () => {
         expect(wrapper.get('[data-test="slug-invalid-feedback"]').isVisible()).toBe(true)
 
     });
+
+
+
+    test('Delete button emits event with correct index', async () => {
+
+        await wrapper.get('[data-test="delete-item-btn"]').trigger("click")
+
+        expect(wrapper.emitted().deleteItem[0]).toEqual([1])
+
+    });
+
+
 });
