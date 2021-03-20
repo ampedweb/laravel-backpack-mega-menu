@@ -26,8 +26,8 @@ class MegaMenu extends Model
      *
      * @return Collection
      */
-    public function getMenuAttribute($value): Collection
+    public function getMenuAttribute(): Collection
     {
-        return collect(json_decode($value,true));
+        return collect(json_decode($this->menu_json,true));
     }
 }
