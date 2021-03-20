@@ -54,6 +54,7 @@ export default {
         },
         sortHandle: String
     },
+    emits: ['update:slug','update:title','delete-item'],
     data() {
         return {
             showValidation: false,
