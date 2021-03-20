@@ -4,10 +4,10 @@
             <div class="text-right">
                 <div class="custom-control custom-switch mb-2">
                     <input type="checkbox" class="custom-control-input"
-                           :id="'menu-item-' + index" :checked="isVisible"
+                           :id="'menu-item-' + uuid" :checked="isVisible"
                            @change="$emit('update:isVisible', $event.target.checked);"
                     >
-                    <label class="custom-control-label" :for="'menu-item-' + index"><small
+                    <label class="custom-control-label" :for="'menu-item-' + uuid"><small
                         class="sr-only">Visible?</small></label>
                 </div>
             </div>
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid';
 
 export default {
     name: "MenuItem",
@@ -75,9 +76,14 @@ export default {
     },
     emits: ['update:slug', 'update:title', 'update:isVisible', 'delete-item'],
 
+    created() {
+        this.uuid = uuidv4();
+    },
+
     data() {
         return {
             showValidation: false,
+            uuid:null
         }
     },
     computed: {
