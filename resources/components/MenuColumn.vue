@@ -35,7 +35,12 @@ export default {
             showValidation: false,
         }
     },
-
+    mounted() {
+        this.incrementMenuColumnCount()
+    },
+    unmounted() {
+        this.decrementMenuColumnCount()
+    },
     props: {
         title: String,
         items: Array
@@ -49,7 +54,12 @@ export default {
         revealValidation() {
             this.showValidation = true;
         },
-
+        incrementMenuColumnCount() {
+            this.$store.commit('incrementMenuColumnCount');
+        },
+        decrementMenuColumnCount() {
+            this.$store.commit('decrementMenuColumnCount');
+        },
         addMenuItem() {
             this.items.push(this.createBlankMenuItem(false));
         }

@@ -23,10 +23,10 @@ const menuStore = createStore({
         decrementMenuItemCount(state) {
             state.menuItemCount--;
         },
-        incrementColumnCount(state) {
+        incrementMenuColumnCount(state) {
             state.columnCount++;
         },
-        decrementColumnCount(state) {
+        decrementMenuColumnCount(state) {
             state.columnCount--;
         }
     },
