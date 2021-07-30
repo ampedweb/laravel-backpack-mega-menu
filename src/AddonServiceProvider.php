@@ -89,7 +89,7 @@ class AddonServiceProvider extends ServiceProvider
         // Publishing assets.
         if ($this->packageDirectoryExistsAndIsNotEmpty('resources/assets')) {
             $this->publishes([
-                $this->path.'/resources/assets' => public_path('vendor/ampedweb/laravel-backpack-mega-menu'),
+                $this->path.'/resources/assets' => public_path('packages/ampedweb/laravel-backpack-mega-menu'),
             ], 'assets');
         }
 

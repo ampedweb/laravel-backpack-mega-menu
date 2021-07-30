@@ -27,5 +27,5 @@
         </div>
         @endsection
         @push('after_scripts')
-            <script src="{{ asset('packages/ampedweb/js/mega-menu-app.js') }}"></script>
+            <script src="{{ asset('packages/ampedweb/laravel-backpack-mega-menu/js/mega-menu-app.js') }}"></script>
         @endpush

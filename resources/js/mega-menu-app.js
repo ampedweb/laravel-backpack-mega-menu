@@ -36,7 +36,7 @@ const menuStore = createStore({
 })
 
 //Import our main app component
-import MegaMenuApp from './components/MegaMenuApp.vue'
+import MegaMenuApp from '../components/MegaMenuApp.vue'
 
 //Grab saved menu json from hidden input.
 const savedMenuJson = document.getElementById('original_menu_json').value;
