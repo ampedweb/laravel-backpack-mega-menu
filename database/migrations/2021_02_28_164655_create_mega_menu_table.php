@@ -17,7 +17,7 @@ class CreateMegaMenuTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->longtext('menu_json')->after('description')->nullable();
+            $table->longtext('menu_json')->nullable();
             $table->timestamps();
         });
     }
