@@ -20,7 +20,7 @@
                     @include('crud::form_content', [ 'fields' => $crud->fields(), 'action' => 'create' ])
                 @endif
 
-                @include('vendor.mega_menu.partials.mega_menu')
+                @include('ampedweb.laravel-backpack-mega-menu::partials.mega_menu')
 
                 @include('crud::inc.form_save_buttons')
             </form>
